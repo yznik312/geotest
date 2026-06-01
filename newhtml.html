@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест по географии</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .quiz-container {
+            background-color: #fff;
+            max-width: 650px;
+            width: 100%;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 25px;
+        }
+        .progress-container {
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 15px;
+            width: 0%;
+            background-color: #2ecc71;
+            transition: width 0.3s ease;
+        }
+        .question-block {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .question-title {
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-bottom: 12px;
+        }
+        .options label {
+            display: block;
+            margin-bottom: 8px;
+            cursor: pointer;
+            padding: 6px;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+        .options label:hover {
+            background-color: #f0f0f0;
+        }
+        .buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        button {
+            flex: 1;
+            padding: 12px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+        button[type="submit"] {
+            background-color: #3498db;
+            color: white;
+        }
+        button[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+        button[type="button"] {
+            background-color: #e74c3c;
+            color: white;
+        }
+        button[type="button"]:hover {
+            background-color: #c0392b;
+        }
+        #result {
+            margin-top: 25px;
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+            font-size: 1.2em;
+            text-align: center;
+            font-weight: bold;
+        }
+        .correct-hint {
+            color: #27ae60;
+            font-size: 0.9em;
+            margin-top: 5px;
+            display: none;
+        }
+        .wrong-hint {
+            color: #c0392b;
+            font-size: 0.9em;
+            margin-top: 5px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <h1>Тест по географии</h1>
+    
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <form id="quizForm">
+        <div class="question-block" data-q="1">
+            <div class="question-title">1. Какая река является самой длинной в мире?</div>
+            <div class="options">
+                <label><input type="radio" name="q1" value="A"> Амазонка</label>
+                <label><input type="radio" name="q1" value="B"> Нил</label>
+                <label><input type="radio" name="q1" value="C"> Янцзы</label>
+            </div>
+            <div class="correct-hint">Правильно! Нил — длиннейшая река (хотя Амазонка самая полноводная).</div>
+            <div class="wrong-hint">Неверно. Правильный ответ: Нил.</div>
+        </div>
+
+        <div class="question-block" data-q="2">
+            <div class="question-title">2. Какая страна является самой большой по площади?</div>
+            <div class="options">
+                <label><input type="radio" name="q2" value="A"> Канада</label>
+                <label><input type="radio" name="q2" value="B"> Китай</label>
+                <label><input type="radio" name="q2" value="C"> Россия</label>
+            </div>
+            <div class="correct-hint">Правильно! Россия занимает первое место по площади.</div>
+            <div class="wrong-hint">Неверно. Правильный ответ: Россия.</div>
+        </div>
+
+        <div class="question-block" data-q="3">
+            <div class="question-title">3. Какой океан является самым глубоким?</div>
+            <div class="options">
+                <label><input type="radio" name="q3" value="A"> Атлантический</label>
+                <label><input type="radio" name="q3" value="B"> Тихий</label>
+                <label><input type="radio" name="q3" value="C"> Индийский</label>
+            </div>
+            <div class="correct-hint">Правильно! В Тихом океане находится Марианская впадина.</div>
+            <div class="wrong-hint">Неверно. Правильный ответ: Тихий океан.</div>
+        </div>
+
+        <div class="question-block" data-q="4">
+            <div class="question-title">4. Столицей какой страны является город Канберра?</div>
+            <div class="options">
+                <label><input type="radio" name="q4" value="A"> Австралия</label>
+                <label><input type="radio" name="q4" value="B"> Новая Зеландия</label>
+                <label><input type="radio" name="q4" value="C"> Канада</label>
+            </div>
+            <div class="correct-hint">Правильно! Многие путают с Сиднеем, но столица — Канберра.</div>
+            <div class="wrong-hint">Неверно. Правильный ответ: Австралия.</div>
+        </div>
+
+        <div class="question-block" data-q="5">
+            <div class="question-title">5. Какая пустыня является самой большой в мире?</div>
+            <div class="options">
+                <label><input type="radio" name="q5" value="A"> Гоби</label>
+                <label><input type="radio" name="q5" value="B"> Сахара</label>
+                <label><input type="radio" name="q5" value="C"> Антарктическая</label>
+            </div>
+            <div class="correct-hint">Правильно! Антарктическая пустыня — крупнейшая полярная пустыня.</div>
+            <div class="wrong-hint">Неверно. Правильный ответ: Антарктическая пустыня (среди жарких — Сахара).</div>
+        </div>
+
+        <div class="question-block" data-q="6">
+            <div class="question-title">6. На каком материке расположена гора Килиманджаро?</div>
+            <div class="options">
+                <label><input type="radio" name="q6" value="A"> Азия</label>
+                <label><input type="radio" name="q6" value="B"> Африка</label>
+                <label><input type="radio" name="q6" value="C"> Южная Америка</label>
+            </div>
+            <div class="correct-hint">Правильно! Это высочайшая точка Африки.</div>
+            <div class="wrong-hint">Неверно. Правильный ответ: Африка.</div>
+        </div>
+
+        <div class="question-block" data-q="7">
+            <div class="question-title">7. Какое море является самым соленым на Земле?</div>
+            <div class="options">
+                <label><input type="radio" name="q7" value="A"> Средиземное</label>
+                <label><input type="radio" name="q7" value="B"> Красное</label>
+                <label><input type="radio" name="q7" value="C"> Мертвое море</label>
+            </div>
+            <div class="correct-hint">Правильно! Мертвое море (озеро) обладает экстремальной соленостью.</div>
+            <div class="wrong-hint">Неверно. Правильный ответ: Мертвое море.</div>
+        </div>
+
+        <div class="question-block" data-q="8">
+            <div class="question-title">8. Через какую страну проходит линия экватора?</div>
+            <div class="options">
+                <label><input type="radio" name="q8" value="A"> Эквадор</label>
+                <label><input type="radio" name="q8" value="B"> Египет</label>
+                <label><input type="radio" name="q8" value="C"> Индия</label>
+            </div>
+            <div class="correct-hint">Правильно! Название Эквадора прямо говорит само за себя.</div>
+            <div class="wrong-hint">Неверно. Правильный ответ: Эквадор.</div>
+        </div>
+
+        <div class="question-block" data-q="9">
+            <div class="question-title">9. Какое озеро является самым глубоким на планете?</div>
+            <div class="options">
+                <label><input type="radio" name="q9" value="A"> Виктория</label>
+                <label><input type="radio" name="q9" value="B"> Байкал</label>
+                <label><input type="radio" name="q9" value="C"> Верхнее</label>
+            </div>
+            <div class="correct-hint">Правильно! Байкал — глубочайшее пресноводное озеро мира.</div>
+            <div class="wrong-hint">Неверно. Правильный ответ: Байкал.</div>
+        </div>
+
+        <div class="question-block" data-q="10">
+            <div class="question-title">10. В каком полушарии находится Антарктида?</div>
+            <div class="options">
+                <label><input type="radio" name="q10" value="A"> В Южном</label>
+                <label><input type="radio" name="q10" value="B"> В Северном</label>
+                <label><input type="radio" name="q10" value="C"> В Восточном</label>
+            </div>
+            <div class="correct-hint">Правильно! Антарктида полностью расположена в Южном полушарии.</div>
+            <div class="wrong-hint">Неверно. Правильный ответ: В Южном.</div>
+        </div>
+
+        <div class="buttons">
+            <button type="submit">Проверить результат</button>
+            <button type="button" id="resetBtn">Очистить результаты</button>
+        </div>
+    </form>
+
+    <div id="result"></div>
+</div>
+
+<script>
+    const correctAnswers = {
+        q1: 'B', q2: 'C', q3: 'B', q4: 'A', q5: 'C',
+        q6: 'B', q7: 'C', q8: 'A', q9: 'B', q10: 'A'
+    };
+
+    const form = document.getElementById('quizForm');
+    const progressBar = document.getElementById('progressBar');
+    const resultDiv = document.getElementById('result');
+    const resetBtn = document.getElementById('resetBtn');
+
+    form.addEventListener('change', () => {
+        let answeredQuestions = 0;
+        for (let i = 1; i <= 10; i++) {
+            const hasValue = form.querySelector(`input[name="q${i}"]:checked`);
+            if (hasValue) answeredQuestions++;
+        }
+
+        const percent = (answeredQuestions / 10) * 100;
+        progressBar.style.width = percent + '%';
+    });
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault(); 
+        
+        let score = 0;
+        let allAnswered = true;
+
+        for (let i = 1; i <= 10; i++) {
+            const checkedRadio = form.querySelector(`input[name="q${i}"]:checked`);
+            const questionBlock = form.querySelector(`[data-q="${i}"]`);
+            const correctHint = questionBlock.querySelector('.correct-hint');
+            const wrongHint = questionBlock.querySelector('.wrong-hint');
+
+            if (!checkedRadio) {
+                allAnswered = false;
+                alert(`Вы не ответили на вопрос №${i}`);
+                return; 
+            }
+
+            if (checkedRadio.value === correctAnswers[`q${i}`]) {
+                score++;
+                correctHint.style.display = 'block';
+                wrongHint.style.display = 'none';
+            } else {
+                correctHint.style.display = 'none';
+                wrongHint.style.display = 'block';
+            }
+        }
+
+        resultDiv.style.display = 'block';
+        if(score >= 8) {
+            resultDiv.style.backgroundColor = '#d4edda';
+            resultDiv.style.color = '#155724';
+            resultDiv.innerHTML = `Отличный результат! Вы ответили правильно на ${score} из 10 вопросов.`;
+        } else {
+            resultDiv.style.backgroundColor = '#f8d7da';
+            resultDiv.style.color = '#721c24';
+            resultDiv.innerHTML = `Попробуйте еще раз. Вы ответили правильно на ${score} из 10 вопросов.`;
+        }
+    });
+
+    resetBtn.addEventListener('click', () => {
+        form.reset(); 
+        progressBar.style.width = '0%'; 
+        resultDiv.style.display = 'none'; 
+        
+        document.querySelectorAll('.correct-hint, .wrong-hint').forEach(hint => {
+            hint.style.display = 'none';
+        });
+    });
+</script>
+
+</body>
+</html>
+
+
